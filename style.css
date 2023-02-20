@@ -35,6 +35,15 @@ button {
     display: inline;
 }
 
+input {
+    display: inline;
+    margin-right: 5px;
+}
+
 p {
     margin-top: 5px;
+}
+
+.init {
+    display: inline;
 }
