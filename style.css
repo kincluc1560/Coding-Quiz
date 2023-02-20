@@ -25,6 +25,16 @@ button {
     padding: 5px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline;
+}
+
+p {
+    margin-top: 5px;
 }
