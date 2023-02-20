@@ -1,0 +1,30 @@
+html {
+    font-family: sans-serif;
+}
+
+a {
+    color: purple;
+    text-decoration: none;
+}
+
+#float-right {
+    color: black;
+    float: right;
+}
+
+main {
+    text-align: center;
+    width: 50%;
+    padding-left: 25%;
+}
+
+button {
+    background-color: rgb(75, 2, 75);
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+}
