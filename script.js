@@ -102,6 +102,53 @@ function start() {
         ans2.text('2. curly brackets');
         ans3.text('3. parenthesis');
         ans4.text('4. square brackets');
+
+        ans1.on('click', function() {
+            timeLeft -= 10;
+            question3();
+            display.append(linebreak);
+            display.append(p);
+            p.text("Wrong!");
+            setInterval(function() {
+                linebreak.remove();
+                p.remove();
+            }, 5000);
+        });
+
+        ans2.on('click', function() {
+            timeLeft -= 10;
+            question3();
+            display.append(linebreak);
+            display.append(p);
+            p.text("Wrong!");
+            setInterval(function() {
+                linebreak.remove();
+                p.remove();
+            }, 5000);
+        });
+
+        ans3.on('click', function() {
+            question3();
+            display.append(linebreak);
+            display.append(p);
+            p.text("Correct!");
+            setInterval(function() {
+                linebreak.remove();
+                p.remove();
+            }, 5000);
+        });
+
+        ans4.on('click', function() {
+            timeLeft -= 10;
+            question3();
+            display.append(linebreak);
+            display.append(p);
+            p.text("Wrong!");
+            setInterval(function() {
+                linebreak.remove();
+                p.remove();
+            }, 5000);
+        });
     }
 }
 
