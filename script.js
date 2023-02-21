@@ -1,14 +1,31 @@
 var time = $('#float-right');
 var display = $('#display');
+var scores = $('#scores');
 var linebreak = $("<hr>");
+var bar = $('#bar');
 var header = $('<h1>');
 var p = $('<p>');
+var initals = $('<input>');
+var timeLeft = 0;
+var count = 0;
+var gameOver = true;
+var pInitals = [];
+var pScores = [];
 
 start();
 
 function start() {
+    scores.text("View Highscores");
+
+    scores.on('click', function () {
+        highScores();
+    });
+
+    document.getElementById("display").style.textAlign = "center";
+    timeLeft = 0;
     header.text('Coding Quiz Challenge');
-    p.text('Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!');
+    var info = $('<p>');
+    info.text('Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!');
     var startBtn = $('<button>');
     startBtn.addClass('button');
     startBtn.text("Start Quiz");
@@ -16,18 +33,20 @@ function start() {
     var ans2 = $('<button>');
     var ans3 = $('<button>');
     var ansC = $('<button>');
-    var timeLeft = 75;
-    var question = 1;
-    var gameOver = false;
+    gameOver = true;
 
+    bar.append(scores);
+    bar.append(time);
     display.append(header);
-    display.append(p);
+    display.append(info);
     display.append(startBtn);
 
     startBtn.on('click', function () {
+        gameOver = false;
+        timeLeft = 75;
         setInterval(function() {
             if(timeLeft < 0) {
-                window.location.href='./highscores.html';
+                highScores();
             }
             time.text('Time: ' + (timeLeft));
             if(!gameOver) {
@@ -40,7 +59,7 @@ function start() {
     function question1() {
         document.getElementById("display").style.textAlign = "left";
         header.text('Commonly used data types DO NOT include:');
-        p.remove();
+        info.remove();
         startBtn.remove();
 
         ans1.text('1. strings');
@@ -326,7 +345,6 @@ function start() {
         ansC.remove();
         time.text("Time: " + timeLeft);
         header.text("All done!");
-        var initals = $('<input>');
         var submit = $('<button>');
         submit.addClass('button');
         submit.text('Submit');
@@ -335,11 +353,51 @@ function start() {
         display.append(initals);
         display.append(submit);
         submit.on('click', function() {
-            console.log('Initials: ', initals.val());
-            window.location.href='./highscores.html';
+            count++;
             highScores();
         });
     }
 }
 
-function highScores() {}
+function highScores() {
+    document.getElementById("display").style.textAlign = "left";
+    display.empty();
+    scores.remove();
+    time.remove();
+    display.append(header);
+    var name = '';
+    name += initals.val();
+    initals.val('');
+    header.text('Highscores');
+    if(count > 0) {
+        pScores.push(timeLeft);
+        pInitals.push(name);
+        for(var i = 0; i < count; i++) {
+            var score = $('<p>');
+            score.text((i+1) + '. ' + pInitals[i] + ' - ' + pScores[i]);
+            score.addClass('score');
+            display.append(score);
+        }
+    }
+    var quiz = $('<button>');
+    var resetScores = $('<button>');
+    quiz.addClass('button');
+    resetScores.addClass('button');
+    quiz.on('click', function() {
+        display.empty();
+        start();
+    });
+    resetScores.on('click', function() {
+        display.empty();
+        count = 0;
+        pInitals = [];
+        pScores = [];
+        highScores();
+    });
+    quiz.text('Go Back');
+    resetScores.text('Clear Highscores');
+    display.append(quiz);
+    if(count > 0) {
+        display.append(resetScores);
+    }
+}

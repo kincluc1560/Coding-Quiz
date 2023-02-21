@@ -7,6 +7,10 @@ a {
     text-decoration: none;
 }
 
+#scores {
+    cursor: pointer;
+}
+
 #float-right {
     color: black;
     float: right;
@@ -33,6 +37,7 @@ button {
 
 .button {
     display: inline;
+    margin-right: 5px;
 }
 
 input {
@@ -46,4 +51,9 @@ p {
 
 .init {
     display: inline;
+}
+
+.score {
+    background-color: rgb(236, 219, 245);
+    padding: 4px;
 }
